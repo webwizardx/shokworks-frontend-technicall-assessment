@@ -52,9 +52,8 @@ export default function SpecialtyCarousel({ news }: Props) {
     <div className={styles.carousel}>
       {/* Header */}
       <div className={styles['carousel__header']}>
-        <h2 className={styles['carousel__title']}>What is the</h2>
         <h2 className={styles['carousel__title']}>
-          <span className={styles['carousel__title--specialty']}>Speciality</span> Of Us?
+          What is the <br /> <span className={styles['carousel__title--specialty']}>Speciality Of Us? </span>
         </h2>
       </div>
 
@@ -63,9 +62,7 @@ export default function SpecialtyCarousel({ news }: Props) {
         <div className={styles['carousel__viewport']}>
           <div className={styles['carousel__track']}>
             {getVisibleCards().map((card) => {
-              const { position, isCenter } = card;
-              const isOuter = Math.abs(position) === 2;
-              const isAdjacent = Math.abs(position) === 1;
+              const { position } = card;
 
               let blurAmount = 'blur(0px)';
               let opacity = 1;
@@ -122,7 +119,18 @@ export default function SpecialtyCarousel({ news }: Props) {
                     </div>
 
                     {/* Content */}
-                    <h3 className={styles['carousel__card-title']}>{card.title}</h3>
+                    <h3 className={styles['carousel__card-title']}>
+                      {card.title.split(' ').map((word, index, array) => (
+                        <span key={index}>
+                          {index === array.length - 1 ? (
+                            <span className={styles['carousel__card-title--bold']}>{word}</span>
+                          ) : (
+                            word
+                          )}
+                          {index < array.length - 1 ? ' ' : ''}
+                        </span>
+                      ))}
+                    </h3>
                     <p className={styles['carousel__card-description']}>{card.description?.slice(0, 100)}...</p>
                   </div>
                 </motion.div>
