@@ -1,10 +1,12 @@
-import SpecialtyCarousel from "@/components/SpecialityCarousel";
+import SpecialtyCarousel from '@/components/SpecialityCarousel/SpecialityCarousel';
+import { getNews } from '@/components/SpecialityCarousel/actions';
 
+export default async function Home() {
+  const news = await getNews();
 
-export default function Home() {
   return (
     <main>
-        <SpecialtyCarousel />
+      <SpecialtyCarousel news={news} />
     </main>
-  )
+  );
 }
